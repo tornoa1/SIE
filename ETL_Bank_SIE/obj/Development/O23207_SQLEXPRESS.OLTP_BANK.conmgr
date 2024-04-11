@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="O23207_SQLEXPRESS.OLTP_BANK"
+  DTS:DTSID="{C11D6525-224A-4E35-A306-29978B2FC406}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=O23207\SQLEXPRESS;Initial Catalog=OLTP_BANK;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-ETL_Bank_SIE-{C11D6525-224A-4E35-A306-29978B2FC406}O23207\SQLEXPRESS.OLTP_BANK;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

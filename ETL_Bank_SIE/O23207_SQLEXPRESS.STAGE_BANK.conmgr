@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="O23207_SQLEXPRESS.STAGE_BANK"
+  DTS:DTSID="{2D3E23B8-9B77-449B-AA85-54BF52AB1AC4}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=O23207\SQLEXPRESS;Initial Catalog=STAGE_BANK;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-ETL_Bank_SIE-{2D3E23B8-9B77-449B-AA85-54BF52AB1AC4}O23207\SQLEXPRESS.STAGE_BANK;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
