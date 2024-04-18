@@ -11,20 +11,20 @@
   DTS:LocaleID="10250"
   DTS:ObjectName="OLTP_STAGE"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{2290A169-67E3-478A-B592-BDDF1E830238}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{A69B95A4-A90C-4024-86F3-64259526808F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
+      DTS:refId="Package\Cargar DIM_EMPLEADO"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{D6336BE9-D4C9-45AA-9C4A-07830A973AFB}"
+      DTS:DTSID="{34EE5A65-6748-4A3E-88F0-0C9FF898B38C}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
+      DTS:ObjectName="Cargar DIM_EMPLEADO"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -32,129 +32,89 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task\Data Conversion"
-              componentClassID="Microsoft.DataConvert"
-              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Data Conversion"
-              name="Data Conversion"
+              refId="Package\Cargar DIM_EMPLEADO\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
-                  name="Data Conversion Input">
+                  refId="Package\Cargar DIM_EMPLEADO\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[USU_CREACION]"
-                      cachedDataType="wstr"
-                      cachedLength="13"
-                      cachedName="USU_CREACION"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[CIUDAD]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="CIUDAD"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[FEC_CREACION]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="FEC_CREACION"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]" />
+                      refId="Package\Cargar DIM_EMPLEADO\Conditional Split.Inputs[Conditional Split Input].Columns[turno]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="turno"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[turno]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                  refId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Invalido]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
                   exclusionGroup="1"
-                  name="Data Conversion Output"
-                  synchronousInputId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of USU_CREACION]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="13"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of USU_CREACION]"
-                      name="Copy of USU_CREACION"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CIUDAD]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="15"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CIUDAD]"
-                      name="Copy of CIUDAD"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]"
-                      name="Copy of FEC_CREACION"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
+                  name="Invalido"
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[turno]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(turno)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                  refId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Valido]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Valido"
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="Data Conversion Error Output"
-                  synchronousInputId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\Conditional Split.Inputs[Conditional Split Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      refId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      refId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -163,7 +123,194 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Derived Column"
+              refId="Package\Cargar DIM_EMPLEADO\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input].Columns[USU_CREACION]"
+                      cachedDataType="wstr"
+                      cachedLength="13"
+                      cachedName="USU_CREACION"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="152"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input].Columns[TIPO_DOCUMENTO]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="TIPO_DOCUMENTO"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TIPO_DOCUMENTO]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input].Columns[FEC_CREACION]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FEC_CREACION"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input].Columns[TURNO_ASIGNACION]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="TURNO_ASIGNACION"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TURNO_ASIGNACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_USU_CREACION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_USU_CREACION]"
+                      name="NEW_USU_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_NOMBRE_COMPLETO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="152"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_NOMBRE_COMPLETO]"
+                      name="NEW_NOMBRE_COMPLETO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[NOMBRE_COMPLETO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_TIPO_DOCUMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_TIPO_DOCUMENTO]"
+                      name="NEW_TIPO_DOCUMENTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TIPO_DOCUMENTO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_FEC_CREACION]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_FEC_CREACION]"
+                      name="NEW_FEC_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_TURNO_ASIGNACION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_TURNO_ASIGNACION]"
+                      name="NEW_TURNO_ASIGNACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TURNO_ASIGNACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DIM_EMPLEADO\Derived Column"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -171,58 +318,79 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  refId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[ciudad]"
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input].Columns[ape_paterno]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="30"
-                      cachedName="ciudad"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]" />
+                      cachedLength="50"
+                      cachedName="ape_paterno"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_paterno]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input].Columns[ape_materno]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ape_materno"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_materno]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input].Columns[nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="nombre"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input].Columns[turno]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="turno"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[turno]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]"
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TURNO_ASIGNACION]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="15"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]"
-                      name="CIUDAD"
+                      length="1"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TURNO_ASIGNACION]"
+                      name="TURNO_ASIGNACION"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]} == "Lima" ? "SEDE PRINCIPAL" : "SEDE SECUNDARIA"</property>
+                          name="Expression">#{Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[turno]} == "MAÑANA" ? "A" : "B"</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">ciudad == "Lima" ? "SEDE PRINCIPAL" : "SEDE SECUNDARIA"</property>
+                          name="FriendlyExpression">turno == "MAÑANA" ? "A" : "B"</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
                       name="FEC_CREACION"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -240,12 +408,848 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="13"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
+                      name="USU_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Carga Inicial"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Carga Inicial"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="152"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[nombre]} + " " + #{Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_paterno]} + " " + #{Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_materno]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">nombre + " " + ape_paterno + " " + ape_materno</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TIPO_DOCUMENTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output].Columns[TIPO_DOCUMENTO]"
+                      name="TIPO_DOCUMENTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"DNI"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"DNI"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DIM_EMPLEADO\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="10250"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="{9459DC20-5FAB-4DDA-BC85-BCCDF3126955}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Flat File Connection Manager 1]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[codigo]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[codigo]"
+                      name="codigo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_paterno]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[ape_paterno]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_paterno]"
+                      name="ape_paterno"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_materno]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[ape_materno]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[ape_materno]"
+                      name="ape_materno"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[nombre]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[usuario]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[usuario]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[usuario]"
+                      name="usuario"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[clave]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[clave]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[clave]"
+                      name="clave"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[dni]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[dni]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[dni]"
+                      name="dni"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[turno]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[turno]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[turno]"
+                      name="turno"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[ape_paterno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ape_paterno" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[ape_materno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ape_materno" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[usuario]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="usuario" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[clave]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="clave" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[dni]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="dni" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[turno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="turno" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_EMPLEADO]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{2D3E23B8-9B77-449B-AA85-54BF52AB1AC4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[O23207_SQLEXPRESS.STAGE_BANK]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NEW_NOMBRE_COMPLETO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="152"
+                      cachedName="NEW_NOMBRE_COMPLETO"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_COMPLETO]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NEW_TIPO_DOCUMENTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="NEW_TIPO_DOCUMENTO"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TIPO_DOCUMENTO]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_TIPO_DOCUMENTO]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[dni]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="dni"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DNI_EMPLEADO]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[dni]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NEW_TURNO_ASIGNACION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="NEW_TURNO_ASIGNACION"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TURNO_ASIGNADO]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_TURNO_ASIGNACION]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[codigo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="codigo"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_EMPLEADO]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output].Columns[codigo]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NEW_FEC_CREACION]"
+                      cachedDataType="dbDate"
+                      cachedName="NEW_FEC_CREACION"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_FEC_CREACION]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NEW_USU_CREACION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NEW_USU_CREACION"
+                      externalMetadataColumnId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
+                      lineageId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output].Columns[NEW_USU_CREACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PK_EMPLEADO]"
+                      dataType="i4"
+                      name="PK_EMPLEADO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_COMPLETO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_COMPLETO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TIPO_DOCUMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TIPO_DOCUMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DNI_EMPLEADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="DNI_EMPLEADO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TURNO_ASIGNADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TURNO_ASIGNADO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_EMPLEADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="COD_EMPLEADO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
+                      dataType="wstr"
+                      length="10"
+                      name="FEC_CREACION" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="USU_CREACION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar DIM_EMPLEADO.Paths[Data Conversion Output]"
+              endId="Package\Cargar DIM_EMPLEADO\Conditional Split.Inputs[Conditional Split Input]"
+              name="Data Conversion Output"
+              startId="Package\Cargar DIM_EMPLEADO\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Cargar DIM_EMPLEADO.Paths[Derived Column Output]"
+              endId="Package\Cargar DIM_EMPLEADO\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Cargar DIM_EMPLEADO\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Cargar DIM_EMPLEADO.Paths[Flat File Source Output]"
+              endId="Package\Cargar DIM_EMPLEADO\Derived Column.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\Cargar DIM_EMPLEADO\Flat File Source.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Cargar DIM_EMPLEADO.Paths[Valido]"
+              endId="Package\Cargar DIM_EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Valido"
+              startId="Package\Cargar DIM_EMPLEADO\Conditional Split.Outputs[Valido]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar DIM_SUCURSAL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D6336BE9-D4C9-45AA-9C4A-07830A973AFB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar DIM_SUCURSAL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar DIM_SUCURSAL\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input].Columns[USU_CREACION]"
+                      cachedDataType="wstr"
+                      cachedLength="13"
+                      cachedName="USU_CREACION"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input].Columns[CIUDAD]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CIUDAD"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input].Columns[FEC_CREACION]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FEC_CREACION"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Cargar DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of USU_CREACION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="13"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of USU_CREACION]"
+                      name="Copy of USU_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CIUDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CIUDAD]"
+                      name="Copy of CIUDAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]"
+                      name="Copy of FEC_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Cargar DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DIM_SUCURSAL\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar DIM_SUCURSAL\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Derived Column.Inputs[Derived Column Input].Columns[ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ciudad"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Cargar DIM_SUCURSAL\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[CIUDAD]"
+                      name="CIUDAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]} == "Lima" ? "SEDE PRINCIPAL" : "SEDE SECUNDARIA"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ciudad == "Lima" ? "SEDE PRINCIPAL" : "SEDE SECUNDARIA"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
+                      name="FEC_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="13"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
                       name="USU_CREACION"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -266,23 +1270,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  refId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Cargar DIM_SUCURSAL\Derived Column.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -291,7 +1295,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\OLE DB Destination"
+              refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -348,7 +1352,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Connections[OleDbConnection]"
                   connectionManagerID="{2D3E23B8-9B77-449B-AA85-54BF52AB1AC4}:external"
                   connectionManagerRefId="Project.ConnectionManagers[O23207_SQLEXPRESS.STAGE_BANK]"
                   description="The OLE DB runtime connection used to access the database."
@@ -356,82 +1360,82 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nombre]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nombre]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="nombre"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_SUCURSAL]"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]" />
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_SUCURSAL]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[codigo]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[codigo]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="10"
                       cachedName="codigo"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[codigo]" />
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[codigo]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of USU_CREACION]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of USU_CREACION]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="13"
                       cachedName="Copy of USU_CREACION"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of USU_CREACION]" />
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of USU_CREACION]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of FEC_CREACION]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of FEC_CREACION]"
                       cachedDataType="dbDate"
                       cachedName="Copy of FEC_CREACION"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]" />
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of CIUDAD]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of CIUDAD]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="15"
                       cachedName="Copy of CIUDAD"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD]"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CIUDAD]" />
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CIUDAD]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PK_SUCURSAL]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PK_SUCURSAL]"
                       dataType="i4"
                       name="PK_SUCURSAL" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_SUCURSAL]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_SUCURSAL]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="NOMBRE_SUCURSAL" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD]"
                       codePage="1252"
                       dataType="str"
                       length="30"
                       name="CIUDAD" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
                       codePage="1252"
                       dataType="str"
                       length="10"
                       name="COD_SUCURSAL" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
                       dataType="wstr"
                       length="10"
                       name="FEC_CREACION" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -441,22 +1445,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -465,7 +1469,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\OLE DB Source"
+              refId="Package\Cargar DIM_SUCURSAL\OLE DB Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
@@ -514,7 +1518,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Connections[OleDbConnection]"
                   connectionManagerID="{C11D6525-224A-4E35-A306-29978B2FC406}:external"
                   connectionManagerRefId="Project.ConnectionManagers[O23207_SQLEXPRESS.OLTP_BANK]"
                   description="The OLE DB runtime connection used to access the database."
@@ -522,76 +1526,76 @@
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[codigo]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[codigo]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[codigo]"
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[codigo]"
                       length="10"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[codigo]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[codigo]"
                       name="codigo"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
                       length="50"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]"
                       name="nombre"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
                       length="30"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ciudad]"
                       name="ciudad"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion]"
+                      externalMetadataColumnId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion]"
                       length="50"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[direccion]"
                       name="direccion"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[codigo]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[codigo]"
                       codePage="1252"
                       dataType="str"
                       length="10"
                       name="codigo" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="nombre" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
                       codePage="1252"
                       dataType="str"
                       length="30"
                       name="ciudad" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[direccion]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -599,48 +1603,48 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[codigo]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[codigo]"
                       codePage="1252"
                       dataType="str"
                       length="10"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[codigo]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[codigo]"
                       name="codigo" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombre]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombre]"
                       name="nombre" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ciudad]"
                       codePage="1252"
                       dataType="str"
                       length="30"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ciudad]"
                       name="ciudad" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[direccion]"
                       name="direccion" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -651,20 +1655,637 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow Task.Paths[Data Conversion Output]"
-              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              refId="Package\Cargar DIM_SUCURSAL.Paths[Data Conversion Output]"
+              endId="Package\Cargar DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Data Conversion Output"
-              startId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+              startId="Package\Cargar DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Derived Column Output]"
-              endId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+              refId="Package\Cargar DIM_SUCURSAL.Paths[Derived Column Output]"
+              endId="Package\Cargar DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]"
               name="Derived Column Output"
-              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+              startId="Package\Cargar DIM_SUCURSAL\Derived Column.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
-              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              refId="Package\Cargar DIM_SUCURSAL.Paths[OLE DB Source Output]"
+              endId="Package\Cargar DIM_SUCURSAL\Derived Column.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
-              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+              startId="Package\Cargar DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar DIM_TIPOMOVIMIENTO"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A2A4C4C5-3611-4538-9BE5-BCEF6BB4FC08}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar DIM_TIPOMOVIMIENTO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Inputs[Data Conversion Input].Columns[USU_CREACION]"
+                      cachedDataType="wstr"
+                      cachedLength="13"
+                      cachedName="USU_CREACION"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Inputs[Data Conversion Input].Columns[ESTADO_TIPO]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="ESTADO_TIPO"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[ESTADO_TIPO]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Inputs[Data Conversion Input].Columns[FEC_CREACION]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FEC_CREACION"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[USU_CREACION_new]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="13"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[USU_CREACION_new]"
+                      name="USU_CREACION_new"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ESTADO_TIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ESTADO_TIPO]"
+                      name="Copy of ESTADO_TIPO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[ESTADO_TIPO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]"
+                      name="Copy of FEC_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Inputs[Derived Column Input].Columns[estado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="estado"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[estado]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[FEC_CREACION]"
+                      name="FEC_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="13"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[USU_CREACION]"
+                      name="USU_CREACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Carga Inicial"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Carga Inicial"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[ESTADO_TIPO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output].Columns[ESTADO_TIPO]"
+                      name="ESTADO_TIPO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[estado]} == "ACTIVO" ? "1" : "0"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">estado == "ACTIVO" ? "1" : "0"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="10250"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="{0B300960-4775-434C-B0E4-C92DB65E4397}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[codigo]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[codigo]"
+                      name="codigo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[descripcion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[descripcion]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[descripcion]"
+                      name="descripcion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[estado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[estado]"
+                      length="50"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[estado]"
+                      name="estado"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[descripcion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="estado" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_TIPOMOVIMIENTO]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{2D3E23B8-9B77-449B-AA85-54BF52AB1AC4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[O23207_SQLEXPRESS.STAGE_BANK]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[descripcion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="descripcion"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MOVIMIENTO]"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[descripcion]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[codigo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="codigo"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_MOVIMIENTO]"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output].Columns[codigo]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of ESTADO_TIPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Copy of ESTADO_TIPO"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ESTADO_TIPO]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of FEC_CREACION]"
+                      cachedDataType="dbDate"
+                      cachedName="Copy of FEC_CREACION"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FEC_CREACION]" />
+                    <inputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[USU_CREACION_new]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="13"
+                      cachedName="USU_CREACION_new"
+                      externalMetadataColumnId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output].Columns[USU_CREACION_new]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PK_TIPOMOVIMIENTO]"
+                      dataType="i4"
+                      name="PK_TIPOMOVIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MOVIMIENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_MOVIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ESTADO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_MOVIMIENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CODIGO_MOVIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FEC_CREACION]"
+                      dataType="wstr"
+                      length="10"
+                      name="FEC_CREACION" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[USU_CREACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="USU_CREACION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar DIM_TIPOMOVIMIENTO.Paths[Data Conversion Output]"
+              endId="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Cargar DIM_TIPOMOVIMIENTO.Paths[Derived Column Output]"
+              endId="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Cargar DIM_TIPOMOVIMIENTO.Paths[Flat File Source Output]"
+              endId="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -683,7 +2304,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{2D3E23B8-9B77-449B-AA85-54BF52AB1AC4}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE DIM_SUCURSAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DIM_SUCURSAL&#xA;TRUNCATE TABLE DIM_TIPOMOVIMIENTO&#xA;TRUNCATE TABLE DIM_EMPLEADO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -695,7 +2316,23 @@
       DTS:From="Package\Execute SQL Task"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Data Flow Task" />
+      DTS:To="Package\Cargar DIM_SUCURSAL" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{924DF95B-B2E9-4851-824A-A476BEDA767F}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Cargar DIM_TIPOMOVIMIENTO" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D5A3DC41-DE5A-4DF6-9FE6-39000311E3A3}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Cargar DIM_EMPLEADO" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -708,48 +2345,124 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph">
-        <AnnotationLayout
-          Text="OLTP_STAGE"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="95,60"
-          Id="d6d996b9-0a44-494d-9b58-ea4ae6929717"
-          TopLeft="14,24" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="151,42"
-          Id="Package\Data Flow Task"
-          TopLeft="115,156" />
+          Size="180,44"
+          Id="Package\Cargar DIM_SUCURSAL"
+          TopLeft="115,161" />
         <NodeLayout
           Size="163,42"
           Id="Package\Execute SQL Task"
           TopLeft="330,54" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="411.5,96">
+          TopLeft="372.75,96">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-221,60"
+              EndConnector="-167.75,65"
               Start="0,0"
-              End="-221,52.5">
+              End="-167.75,57.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
+                    End="0,18.364185110664" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
+                    Point1="0,18.364185110664"
+                    Point2="0,22.364185110664"
+                    Point3="-4,22.364185110664" />
                   <mssgle:LineSegment
-                    End="-217,30" />
+                    End="-163.75,22.364185110664" />
                   <mssgle:CubicBezierSegment
-                    Point1="-217,30"
-                    Point2="-221,30"
-                    Point3="-221,34" />
+                    Point1="-163.75,22.364185110664"
+                    Point2="-167.75,22.364185110664"
+                    Point3="-167.75,26.364185110664" />
                   <mssgle:LineSegment
-                    End="-221,52.5" />
+                    End="-167.75,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="OLTP_STAGE"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="95,40"
+          Id="d6d996b9-0a44-494d-9b58-ea4ae6929717"
+          TopLeft="14,24" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO"
+          TopLeft="642,166" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="437.333333333333,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="304.166666666667,70"
+              Start="0,0"
+              End="304.166666666667,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.408262454435" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.408262454435"
+                    Point2="0,28.408262454435"
+                    Point3="4,28.408262454435" />
+                  <mssgle:LineSegment
+                    End="300.166666666667,28.408262454435" />
+                  <mssgle:CubicBezierSegment
+                    Point1="300.166666666667,28.408262454435"
+                    Point2="304.166666666667,28.408262454435"
+                    Point3="304.166666666667,32.408262454435" />
+                  <mssgle:LineSegment
+                    End="304.166666666667,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Cargar DIM_EMPLEADO"
+          TopLeft="382,164" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="411.5,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.5,68"
+              Start="0,0"
+              End="50.5,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30"
+                    Point2="0,34"
+                    Point3="4,34" />
+                  <mssgle:LineSegment
+                    End="46.5,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.5,34"
+                    Point2="50.5,34"
+                    Point3="50.5,38" />
+                  <mssgle:LineSegment
+                    End="50.5,60.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -762,20 +2475,28 @@
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Data Flow Task">
+    design-time-name="Package\Cargar DIM_SUCURSAL">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="154,42"
+          Id="Package\Cargar DIM_SUCURSAL\Derived Column"
+          TopLeft="275,128" />
+        <NodeLayout
           Size="150,42"
-          Id="Package\Data Flow Task\OLE DB Source"
+          Id="Package\Cargar DIM_SUCURSAL\OLE DB Source"
           TopLeft="75,45" />
         <NodeLayout
-          Size="154,42"
-          Id="Package\Data Flow Task\Derived Column"
-          TopLeft="275,128" />
+          Size="156,42"
+          Id="Package\Cargar DIM_SUCURSAL\Data Conversion"
+          TopLeft="463,220.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Cargar DIM_SUCURSAL\OLE DB Destination"
+          TopLeft="669.5,294.5" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          Id="Package\Cargar DIM_SUCURSAL.Paths[OLE DB Source Output]"
           TopLeft="150,87">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -808,16 +2529,8 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="669.5,294.5" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Data Flow Task\Data Conversion"
-          TopLeft="463,220.5" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          Id="Package\Cargar DIM_SUCURSAL.Paths[Derived Column Output]"
           TopLeft="352,170">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -851,7 +2564,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Data Conversion Output]"
+          Id="Package\Cargar DIM_SUCURSAL.Paths[Data Conversion Output]"
           TopLeft="541,262.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -888,7 +2601,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Source">
+    design-time-name="Package\Cargar DIM_SUCURSAL\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -901,7 +2614,325 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\Cargar DIM_SUCURSAL\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Cargar DIM_TIPOMOVIMIENTO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO\Flat File Source"
+          TopLeft="47,69" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO\Derived Column"
+          TopLeft="178,145" />
+        <EdgeLayout
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO.Paths[Flat File Source Output]"
+          TopLeft="122.5,111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132.5,34"
+              Start="0,0"
+              End="132.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="128.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="128.5,17"
+                    Point2="132.5,17"
+                    Point3="132.5,21" />
+                  <mssgle:LineSegment
+                    End="132.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO\Data Conversion"
+          TopLeft="314,221" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination"
+          TopLeft="430,299" />
+        <EdgeLayout
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO.Paths[Derived Column Output]"
+          TopLeft="255,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137,34"
+              Start="0,0"
+              End="137,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="133,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="133,17"
+                    Point2="137,17"
+                    Point3="137,21" />
+                  <mssgle:LineSegment
+                    End="137,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar DIM_TIPOMOVIMIENTO.Paths[Data Conversion Output]"
+          TopLeft="392,263">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="123.5,36"
+              Start="0,0"
+              End="123.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="119.5,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="119.5,18"
+                    Point2="123.5,18"
+                    Point3="123.5,22" />
+                  <mssgle:LineSegment
+                    End="123.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar DIM_TIPOMOVIMIENTO\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Cargar DIM_EMPLEADO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Cargar DIM_EMPLEADO\Flat File Source"
+          TopLeft="24,24" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Cargar DIM_EMPLEADO\Derived Column"
+          TopLeft="124,95" />
+        <EdgeLayout
+          Id="Package\Cargar DIM_EMPLEADO.Paths[Flat File Source Output]"
+          TopLeft="99.5,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101.5,29"
+              Start="0,0"
+              End="101.5,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="97.5,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="97.5,14.5"
+                    Point2="101.5,14.5"
+                    Point3="101.5,18.5" />
+                  <mssgle:LineSegment
+                    End="101.5,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Cargar DIM_EMPLEADO\Data Conversion"
+          TopLeft="242,183" />
+        <EdgeLayout
+          Id="Package\Cargar DIM_EMPLEADO.Paths[Derived Column Output]"
+          TopLeft="201,137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="119,46"
+              Start="0,0"
+              End="119,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
+                  <mssgle:LineSegment
+                    End="115,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="115,23"
+                    Point2="119,23"
+                    Point3="119,27" />
+                  <mssgle:LineSegment
+                    End="119,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Cargar DIM_EMPLEADO\Conditional Split"
+          TopLeft="334,283" />
+        <EdgeLayout
+          Id="Package\Cargar DIM_EMPLEADO.Paths[Data Conversion Output]"
+          TopLeft="320,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.5,58"
+              Start="0,0"
+              End="91.5,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="4,29" />
+                  <mssgle:LineSegment
+                    End="87.5,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.5,29"
+                    Point2="91.5,29"
+                    Point3="91.5,33" />
+                  <mssgle:LineSegment
+                    End="91.5,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Cargar DIM_EMPLEADO\OLE DB Destination"
+          TopLeft="468,382" />
+        <EdgeLayout
+          Id="Package\Cargar DIM_EMPLEADO.Paths[Valido]"
+          TopLeft="411.5,325">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="142,57"
+              Start="0,0"
+              End="142,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="138,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="138,28.5"
+                    Point2="142,28.5"
+                    Point3="142,32.5" />
+                  <mssgle:LineSegment
+                    End="142,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="56.73978515625,33.5,28.5204296875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar DIM_EMPLEADO\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
