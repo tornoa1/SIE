@@ -1,0 +1,10 @@
+codigo,descripcion,estado
+"001","Apertura de Cuenta","ACTIVO"
+"002","Cancelar Cuenta","ACTIVO"
+"003","Deposito","ACTIVO"
+"004","Retiro","ACTIVO"
+"005","Interes","INACTIVO"
+"006","Mantenimiento","ACTIVO"
+"007","ITF","INACTIVO"
+"008","Transferencia","ACTIVO"
+"009","Cargo por Movimiento","ACTIVO"
