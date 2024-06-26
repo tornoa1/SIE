@@ -1,23 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.9.34723.18
+VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "SSAS_BANK_LR", "SSAS_BANK_LR.dwproj", "{784C4395-94FE-441C-BBA4-D5926BBE79E4}"
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "SSAS_BANK_LR", "SSAS_BANK_LR.dwproj", "{A49D9EC5-348E-48FB-A7EF-EB4802C10C5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{784C4395-94FE-441C-BBA4-D5926BBE79E4}.Development|Default.ActiveCfg = Development
-		{784C4395-94FE-441C-BBA4-D5926BBE79E4}.Development|Default.Build.0 = Development
-		{784C4395-94FE-441C-BBA4-D5926BBE79E4}.Development|Default.Deploy.0 = Development
+		{A49D9EC5-348E-48FB-A7EF-EB4802C10C5D}.Development|Default.ActiveCfg = Development
+		{A49D9EC5-348E-48FB-A7EF-EB4802C10C5D}.Development|Default.Build.0 = Development
+		{A49D9EC5-348E-48FB-A7EF-EB4802C10C5D}.Development|Default.Deploy.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A6823911-AB1B-447D-A487-281646FA944B}
+		SolutionGuid = {AAA45AD2-D02E-40FA-8EC6-A13DEEBB3B8D}
 	EndGlobalSection
 EndGlobal

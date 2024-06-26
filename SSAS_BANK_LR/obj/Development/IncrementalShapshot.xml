@@ -1,8 +1,8 @@
 ﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
   <Target>
     <Database>SSAS_BANK_LR</Database>
-    <Server>O23207\LOCALHOST</Server>
-    <ConnectionString>Data Source=O23207\LOCALHOST;Timeout=0</ConnectionString>
+    <Server>(local)</Server>
+    <ConnectionString>Data Source=(local);Timeout=0</ConnectionString>
   </Target>
   <Options>
     <TransactionalDeployment>false</TransactionalDeployment>
@@ -19,29 +19,64 @@
     <ObjectSnapshots>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
-        <TimeStamp>1xsrEca1z6HbQsva3ht333EfpHE=22/05/2024 18:37:0922/05/2024 18:37:09</TimeStamp>
+        <TimeStamp>HDvOgKR4Th70t11/JdCn/3CAjng=25/06/2024 19:49:5025/06/2024 19:49:49</TimeStamp>
         <ID>
           <String>DS_BANK_LR</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.DataSourceView</Type>
-        <TimeStamp>KVYUWzSo67KFKO7KLoIP1WsjxaY=22/05/2024 18:55:2022/05/2024 18:52:38</TimeStamp>
+        <TimeStamp>V7QBsD8y2HaTZaaU+3rcGBF4F+E=25/06/2024 20:15:3725/06/2024 19:50:41</TimeStamp>
         <ID>
           <String>DS_BANK_LR</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>aIBYYkFYUuN4JX42bnOgIYotR94=22/05/2024 18:57:3722/05/2024 18:56:24</TimeStamp>
+        <TimeStamp>RODweA+lzvePFWGdE5xs2AHuQP0=25/06/2024 20:31:4025/06/2024 20:16:36</TimeStamp>
         <ID>
           <String>DIM_CLIENTE</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>vFtKy378035JDky2tpSSGSCGIhU=25/06/2024 20:33:5725/06/2024 20:33:06</TimeStamp>
+        <ID>
+          <String>DIM_EMPLEADO</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>dxwmD4MZCEjd9Wcak0EIEanCNU8=25/06/2024 20:36:4125/06/2024 20:35:59</TimeStamp>
+        <ID>
+          <String>DIM_SUCURSAL</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>xQLTxX5cKt/o6jkfJaiWYQrEEio=25/06/2024 20:37:5325/06/2024 20:37:27</TimeStamp>
+        <ID>
+          <String>DIM_TIPOMOVIMIENTO</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>6Ts39bH4s2VpekMHZs9/0J0Vx4Q=25/06/2024 20:41:2325/06/2024 20:40:39</TimeStamp>
+        <ID>
+          <String>DIM_Fechas</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>xnAwdKf3MBsPihH3BughCdxchHI=25/06/2024 20:54:5125/06/2024 20:42:22hG9/LXolbHqUOK/RL9BFT4OjLD0=25/06/2024 20:47:0925/06/2024 20:42:22</TimeStamp>
+        <ID>
+          <String>DS_BANK_LR</String>
         </ID>
       </ObjectSnapshot>
     </ObjectSnapshots>
     <DatabaseSnapshot>
       <Type>Microsoft.AnalysisServices.Database</Type>
-      <TimeStamp>F5KvruT2lReAjB9IZtHMGrtWY4g=22/05/2024 18:16:0822/05/2024 18:16:07</TimeStamp>
+      <TimeStamp>S8or4QTB8B/j6kcxCKJApXsmCsw=25/06/2024 18:12:1025/06/2024 18:12:10</TimeStamp>
       <ID>
         <String>SSAS_BANK_LR</String>
       </ID>
@@ -50,5 +85,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2024-05-22T23:57:38.8Z</LastDeployed>
+  <LastDeployed>2024-06-26T01:56:20.006667Z</LastDeployed>
 </DeploymentSnapshot>

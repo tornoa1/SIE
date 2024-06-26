@@ -6,10 +6,38 @@
     <Name>SSAS_BANK_LR.database</Name>
     <FullPath>SSAS_BANK_LR.database</FullPath>
   </Database>
+  <Cubes>
+    <ProjectItem>
+      <Name>DS_BANK_LR.cube</Name>
+      <FullPath>DS_BANK_LR.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>DS_BANK_LR.partitions</Name>
+          <FullPath>DS_BANK_LR.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+  </Cubes>
   <Dimensions>
     <ProjectItem>
       <Name>DIM_CLIENTE.dim</Name>
       <FullPath>DIM_CLIENTE.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_EMPLEADO.dim</Name>
+      <FullPath>DIM_EMPLEADO.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_SUCURSAL.dim</Name>
+      <FullPath>DIM_SUCURSAL.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_TIPOMOVIMIENTO.dim</Name>
+      <FullPath>DIM_TIPOMOVIMIENTO.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_Fechas.dim</Name>
+      <FullPath>DIM_Fechas.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>
@@ -32,7 +60,7 @@
           <ConfigurationSetting>
             <Id>DS_BANK_LR</Id>
             <Name>DS_BANK_LR</Name>
-            <Value xsi:type="xsd:string">Provider=SQLOLEDB.1;Data Source=O23207\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=STAGE_BANK</Value>
+            <Value xsi:type="xsd:string">Provider=SQLOLEDB.1;Data Source=LAPTOP-U2SVU8FQ;Integrated Security=SSPI;Initial Catalog=STAGE_BANK</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>

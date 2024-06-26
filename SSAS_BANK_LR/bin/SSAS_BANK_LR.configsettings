@@ -3,7 +3,7 @@
     <DataSources>
       <DataSource>
         <ID>DS_BANK_LR</ID>
-        <ConnectionString>Provider=SQLOLEDB.1;Data Source=O23207\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=STAGE_BANK</ConnectionString>
+        <ConnectionString>Provider=SQLOLEDB.1;Data Source=LAPTOP-U2SVU8FQ;Integrated Security=SSPI;Initial Catalog=STAGE_BANK</ConnectionString>
         <ImpersonationInfo>
           <ImpersonationMode xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">ImpersonateServiceAccount</ImpersonationMode>
           <ImpersonationInfoSecurity xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Unchanged</ImpersonationInfoSecurity>
@@ -14,7 +14,42 @@
       <Dimension>
         <ID>DIM_CLIENTE</ID>
       </Dimension>
+      <Dimension>
+        <ID>DIM_EMPLEADO</ID>
+      </Dimension>
+      <Dimension>
+        <ID>DIM_SUCURSAL</ID>
+      </Dimension>
+      <Dimension>
+        <ID>DIM_TIPOMOVIMIENTO</ID>
+      </Dimension>
+      <Dimension>
+        <ID>DIM_Fechas</ID>
+      </Dimension>
     </Dimensions>
+    <Cubes>
+      <Cube>
+        <ID>DS_BANK_LR</ID>
+        <MeasureGroups>
+          <MeasureGroup>
+            <ID>FACT MOVIMIENTO</ID>
+            <Partitions>
+              <Partition>
+                <ID>FACT MOVIMIENTO</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+          <MeasureGroup>
+            <ID>FACT MOVIMIENTO 1</ID>
+            <Partitions>
+              <Partition>
+                <ID>FACT MOVIMIENTO</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+        </MeasureGroups>
+      </Cube>
+    </Cubes>
     <DataSourceImpersonationInfo>
       <ImpersonationMode xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Default</ImpersonationMode>
       <ImpersonationInfoSecurity xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Unchanged</ImpersonationInfoSecurity>

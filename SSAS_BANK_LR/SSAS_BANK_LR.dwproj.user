@@ -3,7 +3,7 @@
     <Configuration>
       <Name>Development</Name>
       <Options>
-        <TargetServer>O23207\LOCALHOST</TargetServer>
+        <TargetServer>(local)</TargetServer>
         <TargetDatabase>SSAS_BANK_LR</TargetDatabase>
         <StartObject>
           <ObjectId></ObjectId>
