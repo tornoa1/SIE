@@ -1,3 +1,18 @@
+USE master;
+go
+
+IF( EXISTS ( SELECT name FROM master.sys.databases WHERE name = 'GeekMarket' ) )
+BEGIN
+	DROP DATABASE GeekMarket;
+END;
+go
+
+CREATE DATABASE GeekMarket;
+go
+
+USE GeekMarket;
+go
+
 CREATE TABLE GEOGRAFIA (
     ID INT IDENTITY PRIMARY KEY,
     PAIS NVARCHAR(255) NOT NULL,
