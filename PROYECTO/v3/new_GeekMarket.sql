@@ -1,16 +1,16 @@
 USE master;
 GO
 
-IF (EXISTS (SELECT name FROM master.sys.databases WHERE name = 'GeekMarket'))
+IF (EXISTS (SELECT name FROM master.sys.databases WHERE name = 'OLTP_GEEKMARKET'))
 BEGIN
-    DROP DATABASE GeekMarket;
+    DROP DATABASE OLTP_GEEKMARKET;
 END;
 GO
 
-CREATE DATABASE GeekMarket;
+CREATE DATABASE OLTP_GEEKMARKET;
 GO
 
-USE GeekMarket;
+USE OLTP_GEEKMARKET;
 GO
 
 CREATE TABLE FECHAS (
