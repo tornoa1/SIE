@@ -1,3 +1,18 @@
+USE master;
+GO
+
+IF (EXISTS (SELECT name FROM master.sys.databases WHERE name = 'GeekMarket'))
+BEGIN
+    DROP DATABASE GeekMarket;
+END;
+GO
+
+CREATE DATABASE GeekMarket;
+GO
+
+USE GeekMarket;
+GO
+
 CREATE TABLE FECHAS (
     PERIODO NVARCHAR(8) PRIMARY KEY,
     FECHA DATE NOT NULL,
